@@ -40,6 +40,10 @@ app.get("/", (req: Request, res: Response) => {
   res.json({ message: "Hello World!" });
 });
 
+app.get("/temperatures", (req: Request, res: Response) => {
+  res.json(tempReadings);
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   storeTemperatureReadings();
