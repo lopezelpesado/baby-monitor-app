@@ -1,0 +1,7 @@
+{
+  "name": "baby-monitor-app",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ]
+}
