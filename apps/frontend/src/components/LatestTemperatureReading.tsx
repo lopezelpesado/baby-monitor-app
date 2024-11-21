@@ -1,5 +1,14 @@
 import React from "react";
+
 import { TemperatureReading } from "../types";
+import {
+  Error,
+  Temperature,
+  TemperatureReadout,
+  Text,
+  Title,
+  Units,
+} from "./LatestTemperatureReading.styled";
 
 interface LatestTemperatureReadingProps {
   temperatureData: TemperatureReading[];
@@ -18,20 +27,28 @@ const LatestTemperatureReading: React.FC<LatestTemperatureReadingProps> = ({
       : null;
 
   return (
-    <div>
-      <h2>Latest Temperature Reading</h2>
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+    <>
+      <Title>Latest Temperature Reading</Title>
       {latestTemperature ? (
-        <p>
-          {`${latestTemperature.temperature.toFixed(1)}°C at ${new Date(
-            latestTemperature.timestamp
-          ).toLocaleTimeString()}`}
-        </p>
+        <>
+          <TemperatureReadout>
+            <Temperature>
+              {latestTemperature.temperature.toFixed(1)}
+            </Temperature>
+            <Units>°C</Units>
+          </TemperatureReadout>
+          <Text>{`Last updated at 
+          ${new Date(latestTemperature.timestamp).toLocaleTimeString([], {
+            hour12: true,
+          })}
+          `}</Text>
+        </>
       ) : (
-        <p>No temperature data available yet.</p>
+        <Text>No temperature data available yet</Text>
       )}
-    </div>
+      {loading && <Text>Loading...</Text>}
+      {error && <Error>{error}</Error>}
+    </>
   );
 };
 

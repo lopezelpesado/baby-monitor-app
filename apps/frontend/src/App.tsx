@@ -1,18 +1,19 @@
-import LatestTemperatureReading from "./components/latestTemperatureReading";
+import LatestTemperatureReading from "./components/LatestTemperatureReading";
 import useTemperatureData from "./hooks/useTemperatureData";
+import { AppContainer, Heading } from "./App.styled";
 
 function App() {
   const { temperatureData, loading, error } = useTemperatureData();
 
   return (
-    <div>
-      <h1>Baby Monitor</h1>
+    <AppContainer>
+      <Heading>Baby Monitor</Heading>
       <LatestTemperatureReading
         temperatureData={temperatureData}
         loading={loading}
         error={error}
       />
-    </div>
+    </AppContainer>
   );
 }
 

@@ -16,14 +16,14 @@ const useTemperatureData = () => {
         const response = await fetch("http://localhost:3000/temperatures");
 
         if (!response.ok) {
-          throw new Error("Failed to fetch temperature data");
+          throw new Error("Failed to get latest temperature data");
         }
 
         const data: TemperatureReading[] = await response.json();
         setTemperatureData(data);
       } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(err.message);
+        if (err) {
+          setError("Failed to get latest temperature data");
         } else {
           setError("An unknown error occurred");
         }
